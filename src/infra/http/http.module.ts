@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 
 // import { DatabaseModule } from '@infra/database/database.module';
 import { ComplexityPlugin } from '@infra/http/graphql/complexity-plugin';
+import { ExampleResolver } from '@infra/http/graphql/resolvers/example.resolver';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { ComplexityPlugin } from '@infra/http/graphql/complexity-plugin';
       // },
     }),
   ],
-  providers: [],
+  providers: [ExampleResolver],
 })
 export class HttpModule {}
