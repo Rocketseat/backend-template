@@ -1,12 +1,13 @@
 import type { Config } from '@jest/types';
 import { exec } from 'child_process';
 import dotenv from 'dotenv';
+import dotenvExpand from 'dotenv-expand';
 import NodeEnvironment from 'jest-environment-node';
 import { Client } from 'pg';
 import util from 'util';
 import { v4 as uuid } from 'uuid';
 
-dotenv.config({ path: '.env.testing' });
+dotenvExpand(dotenv.config({ path: '.env.testing' }));
 
 const execSync = util.promisify(exec);
 
@@ -19,8 +20,14 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
   constructor(config: Config.ProjectConfig) {
     super(config);
 
+    const dbUser = process.env.DATABASE_USER;
+    const dbPass = process.env.DATABASE_PASS;
+    const dbHost = process.env.DATABASE_HOST;
+    const dbPort = process.env.DATABASE_PORT;
+    const dbName = process.env.DATABASE_NAME;
+
     this.schema = `test_${uuid()}`;
-    this.connectionString = `${process.env.DATABASE_URL}?schema=${this.schema}`;
+    this.connectionString = `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}?schema=${this.schema}`;
   }
 
   async setup() {
