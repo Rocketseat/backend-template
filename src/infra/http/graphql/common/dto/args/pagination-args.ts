@@ -1,5 +1,5 @@
-import { Min, Max } from 'class-validator';
 import { ArgsType, Field, Int } from '@nestjs/graphql';
+import { Min, Max } from 'class-validator';
 
 @ArgsType()
 export class PaginationArgs {

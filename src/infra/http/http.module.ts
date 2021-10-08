@@ -1,6 +1,6 @@
-import path from 'path';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import path from 'path';
 
 // import { DatabaseModule } from '@infra/database/database.module';
 import { ComplexityPlugin } from '@infra/http/graphql/complexity-plugin';

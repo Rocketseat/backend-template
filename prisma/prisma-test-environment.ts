@@ -1,10 +1,10 @@
-import NodeEnvironment from 'jest-environment-node';
 import type { Config } from '@jest/types';
 import { exec } from 'child_process';
-import { v4 as uuid } from 'uuid';
 import dotenv from 'dotenv';
+import NodeEnvironment from 'jest-environment-node';
 import { Client } from 'pg';
 import util from 'util';
+import { v4 as uuid } from 'uuid';
 
 dotenv.config({ path: '.env.testing' });
 
