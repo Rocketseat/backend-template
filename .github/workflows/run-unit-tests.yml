@@ -1,0 +1,28 @@
+name: Unit Tests
+
+on: [pull_request]
+
+jobs:
+  run-ci:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies (with cache)
+        uses: bahmutov/npm-install@v1
+
+      - name: Generate Prisma Artifacts
+        run: yarn prisma generate
+
+      - name: Run Tests
+        run: yarn test

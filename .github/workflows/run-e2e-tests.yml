@@ -1,0 +1,42 @@
+name: e2e Tests
+
+on: [pull_request]
+
+jobs:
+  run-e2e-tests:
+    name: Run e2e Tests
+    runs-on: ubuntu-latest
+    container: node:14
+
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: docker
+          POSTGRES_DB: app
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies (with cache)
+        uses: bahmutov/npm-install@v1
+
+      - name: Run Tests
+        run: yarn test:e2e
+        env:
+          DATABASE_HOST: postgres
+          DATABASE_PORT: 5432
+          DATABASE_USER: postgres
+          DATABASE_PASS: docker
+          DATABASE_NAME: app
