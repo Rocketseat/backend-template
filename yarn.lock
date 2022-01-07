@@ -2836,10 +2836,10 @@ eslint-config-prettier@8.3.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
   integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
 
-eslint-plugin-import-helpers@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-import-helpers/-/eslint-plugin-import-helpers-1.1.0.tgz#ab5c3f33de2a2f461061e8a13b143e8499c3baa0"
-  integrity sha512-a7l1Sj6hZybVHVkxVRVWm1WaAyk9yDjWvSVhUfnDR23i0vQ8RS1wv9k617qGIWPqkttzg299aEtx+bCHA2EoqQ==
+eslint-plugin-import-helpers@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import-helpers/-/eslint-plugin-import-helpers-1.2.1.tgz#22c7ac66c964e8257b2a6fb4aff8a51b35cbdc6d"
+  integrity sha512-BSqLlCnyX4tWGlvPUTpBgUoaFiWxXSztpk9SozZVW4TZU1ygZuF0Lrfn9CO5xx1XT+PVAR9yroP9JPRyB4rAjQ==
 
 eslint-plugin-prettier@4.0.0:
   version "4.0.0"
