@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import tracer from 'dd-trace';
 
 import { AppModule } from './app.module';
 
@@ -12,5 +13,13 @@ async function bootstrap() {
     console.log('HTTP server running!');
   });
 }
+
+tracer.init({
+  service: process.env.SERVICE,
+  env: process.env.NODE_ENV,
+  version: process.env.VERSION,
+  runtimeMetrics: true,
+  logInjection: true,
+});
 
 bootstrap();
