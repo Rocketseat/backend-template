@@ -1,10 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-type ExampleRequest = {
-  number: number;
-};
-
-type ExampleResponse = number;
+import { ExampleRequest, ExampleResponse } from './types';
 
 @Injectable()
 export class ExampleUseCase {
