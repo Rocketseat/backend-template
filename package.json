@@ -4,6 +4,15 @@
   "description": "Template for back-end applications.",
   "private": true,
   "license": "UNLICENSED",
+  "pkg": {
+    "scripts": "build/**/*.js",
+    "assets": [
+      "build/**/*"
+    ],
+    "targets": [
+      "node16"
+    ]
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
