@@ -4,6 +4,18 @@
   "description": "Template for back-end applications.",
   "private": true,
   "license": "UNLICENSED",
+  "pkg": {
+    "scripts": "build/**/*.js",
+    "assets": [
+      "build/**/*"
+    ],
+    "targets": [
+      "node16"
+    ]
+  },
+  "prisma": {
+    "seed": "ts-node -r tsconfig-paths/register prisma/seed.ts"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
