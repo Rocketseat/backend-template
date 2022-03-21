@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!/prisma/**
+!/src/**
+!/scripts/**
+!/.env
+!/init*.sh
+!/package.json
+!/tsconfig*.json
+!/yarn.lock
