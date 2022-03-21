@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "target": "es2017",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./build",
     "baseUrl": "./",
     "resolveJsonModule": true,
     "incremental": true,
