@@ -4,6 +4,7 @@
   "description": "Template for back-end applications.",
   "private": true,
   "license": "UNLICENSED",
+  "bin": "build/src/main.js",
   "pkg": {
     "scripts": "build/**/*.js",
     "assets": [
