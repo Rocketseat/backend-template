@@ -41,7 +41,7 @@
     "@nestjs/platform-express": "8.0.6",
     "@prisma/client": "3.0.2",
     "apollo-server-express": "3.3.0",
-    "apollo-server-plugin-base": "3.2.0",
+    "apollo-server-plugin-base": "3.5.2",
     "class-transformer": "0.4.0",
     "class-validator": "0.13.2",
     "dd-trace": "2.0.0",
