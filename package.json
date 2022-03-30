@@ -4,6 +4,19 @@
   "description": "Template for back-end applications.",
   "private": true,
   "license": "UNLICENSED",
+  "bin": "build/src/main.js",
+  "pkg": {
+    "scripts": "build/**/*.js",
+    "assets": [
+      "build/**/*"
+    ],
+    "targets": [
+      "node16"
+    ]
+  },
+  "prisma": {
+    "seed": "ts-node -r tsconfig-paths/register prisma/seed.ts"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -45,7 +58,7 @@
   "devDependencies": {
     "@commitlint/cli": "13.1.0",
     "@nestjs/cli": "8.1.1",
-    "@nestjs/schematics": "8.0.3",
+    "@nestjs/schematics": "8.0.8",
     "@nestjs/testing": "8.0.6",
     "@rocketseat/commitlint-config": "0.0.3",
     "@swc/cli": "0.1.55",
@@ -57,7 +70,7 @@
     "@types/node": "16.9.1",
     "@types/pg": "8.6.1",
     "@types/supertest": "2.0.11",
-    "@types/uuid": "8.3.1",
+    "@types/uuid": "8.3.4",
     "@typescript-eslint/eslint-plugin": "4.31.0",
     "@typescript-eslint/parser": "4.31.0",
     "eslint": "7.32.0",
@@ -69,8 +82,8 @@
     "prettier": "2.4.0",
     "prisma": "3.0.2",
     "supertest": "6.1.6",
-    "ts-jest": "27.0.5",
-    "ts-loader": "9.2.5",
+    "ts-jest": "27.1.4",
+    "ts-loader": "9.2.8",
     "ts-node": "10.2.1",
     "tsconfig-paths": "3.11.0",
     "typescript": "4.4.3"
