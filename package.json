@@ -63,7 +63,7 @@
     "@rocketseat/commitlint-config": "0.0.3",
     "@swc/cli": "0.1.55",
     "@swc/core": "1.2.120",
-    "@swc/jest": "0.2.15",
+    "@swc/jest": "0.2.20",
     "@types/express": "4.17.13",
     "@types/faker": "5.5.9",
     "@types/jest": "27.4.1",
