@@ -15,7 +15,9 @@ async function bootstrap() {
   };
 
   const lightship: Lightship = await createLightship(configuration);
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true,
+  });
 
   lightship.registerShutdownHandler(() => app.close());
 
