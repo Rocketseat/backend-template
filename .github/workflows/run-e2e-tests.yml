@@ -6,7 +6,6 @@ jobs:
   run-e2e-tests:
     name: Run e2e Tests
     runs-on: ubuntu-latest
-    container: node:14
 
     services:
       postgres:
@@ -22,6 +21,32 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      zookeeper:
+        image: bitnami/zookeeper:3
+        ports:
+          - 2181:2181
+        env:
+          ALLOW_ANONYMOUS_LOGIN: yes
+        options: >-
+          --health-cmd "nc -z localhost 2181 || exit -1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+      kafka:
+        image: bitnami/kafka:2
+        ports:
+          - 9092:9092
+        env:
+          KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
+          KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+          ALLOW_PLAINTEXT_LISTENER: yes
+          KAFKA_ADVERTISED_HOST_NAME: localhost
+        options: >-
+          --health-cmd "kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --list"
+          --health-interval 10s
+          --health-timeout 10s
+          --health-retries 50
 
     steps:
       - name: Checkout repository
@@ -35,8 +60,10 @@ jobs:
       - name: Run Tests
         run: yarn test:e2e
         env:
-          DATABASE_HOST: postgres
+          DATABASE_HOST: localhost
           DATABASE_PORT: 5432
           DATABASE_USER: postgres
           DATABASE_PASS: docker
           DATABASE_NAME: app
+          JWT_PUBLIC_KEY: ${{secrets.JWT_PUBLIC_KEY}}
+          JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}

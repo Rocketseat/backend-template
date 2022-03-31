@@ -1,13 +1,12 @@
 import type { Config } from '@jest/types';
 import { exec } from 'child_process';
 import dotenv from 'dotenv';
-import dotenvExpand from 'dotenv-expand';
 import NodeEnvironment from 'jest-environment-node';
 import { Client } from 'pg';
 import util from 'util';
 import { v4 as uuid } from 'uuid';
 
-dotenvExpand(dotenv.config({ path: '.env.testing' }));
+dotenv.config({ path: '.env.testing' });
 
 const execSync = util.promisify(exec);
 
@@ -34,7 +33,7 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
     process.env.DATABASE_URL = this.connectionString;
     this.global.process.env.DATABASE_URL = this.connectionString;
 
-    await execSync(`${prismaBinary} migrate deploy --preview-feature`);
+    await execSync(`${prismaBinary} migrate deploy`);
 
     return super.setup();
   }

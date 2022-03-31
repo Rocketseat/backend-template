@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import tracer from 'dd-trace';
 import { LoggerErrorInterceptor } from 'nestjs-pino';
 
 import { LoggerService } from '@infra/logger/logger.service';
@@ -19,5 +20,13 @@ async function bootstrap() {
     LoggerServiceInstance.log('HTTP server running!');
   });
 }
+
+tracer.init({
+  service: process.env.SERVICE,
+  env: process.env.NODE_ENV,
+  version: process.env.VERSION,
+  runtimeMetrics: true,
+  logInjection: true,
+});
 
 bootstrap();
