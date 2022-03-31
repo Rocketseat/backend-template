@@ -49,6 +49,7 @@
     "faker": "5.5.3",
     "graphql": "15.8.0",
     "graphql-query-complexity": "0.11.0",
+    "lightship": "7.0.2",
     "nestjs-pino": "2.5.2",
     "pg": "8.7.3",
     "pino-http": "6.6.0",
