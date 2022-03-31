@@ -11,6 +11,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const configuration: ConfigurationInput = {
     detectKubernetes: process.env.NODE_ENV !== 'production' ? false : true,
+    gracefulShutdownTimeout: 30 * 1000,
     port: 9000,
   };
 
