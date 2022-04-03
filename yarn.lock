@@ -752,13 +752,13 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@datadog/native-appsec@^0.8.0":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@datadog/native-appsec/-/native-appsec-0.8.1.tgz#50cb6ef2e75ea13cd9e837e64971deff3673c638"
-  integrity sha512-0jewxGPoRxFd/UYY5+9uisTsTfctwRZy19fU5wo+psejhlxflDnupSDamtnr0nF72s4dbX1z1uAwGWGkuxnV3Q==
+"@datadog/native-appsec@^0.8.3":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@datadog/native-appsec/-/native-appsec-0.8.3.tgz#f18974a66cbee77d77429d24513a42c9343e09d8"
+  integrity sha512-X8RAZkyZUEZ5qywLydpqojJxMcFZjvNS6FhSbBXY8+slbez7wH+nja3CUgUP43Jez/B6jfS49t3WrOX0/BfA8g==
   dependencies:
     detect-libc "^1.0.3"
-    minimist "^1.2.5"
+    minimist "^1.2.6"
     tar "^6.1.11"
 
 "@datadog/native-metrics@^1.1.0":
@@ -2402,11 +2402,6 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-atob@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
-  integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
-
 atomic-sleep@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/atomic-sleep/-/atomic-sleep-1.0.0.tgz#eb85b77a601fc932cfe432c5acd364a9e2c9075b"
@@ -3096,12 +3091,12 @@ dateformat@^4.6.3:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-4.6.3.tgz#556fa6497e5217fedb78821424f8a1c22fa3f4b5"
   integrity sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==
 
-dd-trace@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dd-trace/-/dd-trace-2.0.0.tgz#2c17569bc25fa6dbe39878ee5110ceb41f4708fe"
-  integrity sha512-Iy2ziJJsfWdSQfYwsOoQWtmedf0m18RK452Fvp4vW1wahAcjzFQbkaOlO6bj85KVrpIF1dnrak8Og7GJQkL2aw==
+dd-trace@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/dd-trace/-/dd-trace-2.4.1.tgz#71c00785db83e29e016998af156e49cf9f7f4417"
+  integrity sha512-l9E0k7wdnXwd/1I8+rzjK3TdhA6E7rs/k/L3qMVdtg6M1DefcUmKixwcuoDLowCHbJr8LvqBv8Qq29fJew6Cyw==
   dependencies:
-    "@datadog/native-appsec" "^0.8.0"
+    "@datadog/native-appsec" "^0.8.3"
     "@datadog/native-metrics" "^1.1.0"
     "@datadog/pprof" "^0.3.0"
     "@datadog/sketches-js" "^1.0.4"
@@ -3109,7 +3104,7 @@ dd-trace@2.0.0:
     crypto-randomuuid "^1.0.0"
     diagnostics_channel "^1.1.0"
     form-data "^3.0.0"
-    import-in-the-middle "^1.1.2"
+    import-in-the-middle "^1.2.1"
     koalas "^1.0.2"
     limiter "^1.1.4"
     lodash.kebabcase "^4.1.1"
@@ -3124,8 +3119,6 @@ dd-trace@2.0.0:
     performance-now "^2.1.0"
     retry "^0.10.1"
     semver "^5.5.0"
-    source-map "^0.7.3"
-    source-map-resolve "^0.6.0"
 
 debug@2.6.9:
   version "2.6.9"
@@ -3165,11 +3158,6 @@ decimal.js@^10.2.1:
   version "10.3.1"
   resolved "https://registry.yarnpkg.com/decimal.js/-/decimal.js-10.3.1.tgz#d8c3a444a9c6774ba60ca6ad7261c3a94fd5e783"
   integrity sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==
-
-decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
 dedent@^0.7.0:
   version "0.7.0"
@@ -4273,10 +4261,10 @@ import-fresh@^3.0.0, import-fresh@^3.2.1:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-import-in-the-middle@^1.1.2:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/import-in-the-middle/-/import-in-the-middle-1.2.0.tgz#203a910e08e7e3db8a0cb3abb85d919459162cbf"
-  integrity sha512-i2OrkKW2UH/W4asmzQztA5qjYxMFLh5BaOUEWLv6Ra0MDT+5v7P/7x5/ESZgG9LOaKijYjXnMfupzzy66tfcyA==
+import-in-the-middle@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/import-in-the-middle/-/import-in-the-middle-1.2.1.tgz#30d4e98be7329eee0d284943dd0df092cc422b3c"
+  integrity sha512-KdYqCJbJWBOU9740nr9lrmCDhW7htxY1dHmbP4iUEeCaxupj2fKFhyHixsly2WmxMbRIsxzSWSJMfGNEU7el+w==
   dependencies:
     module-details-from-path "^1.0.3"
 
@@ -6659,14 +6647,6 @@ sonic-boom@^2.2.0, sonic-boom@^2.2.1:
   integrity sha512-WgtVLfGl347/zS1oTuLaOAvVD5zijgjphAJHgbbnBJGgexnr+C1ULSj0j7ftoGxpuxR4PaV635NkwFemG8m/5w==
   dependencies:
     atomic-sleep "^1.0.0"
-
-source-map-resolve@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.6.0.tgz#3d9df87e236b53f16d01e58150fc7711138e5ed2"
-  integrity sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==
-  dependencies:
-    atob "^2.1.2"
-    decode-uri-component "^0.2.0"
 
 source-map-support@0.5.21:
   version "0.5.21"
