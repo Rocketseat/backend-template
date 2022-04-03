@@ -1,4 +1,4 @@
-FROM node:17-alpine AS migration
+FROM node:16-alpine AS migration
 ARG DATABASE_URL
 ENV DATABASE_URL $DATABASE_URL
 ENV NODE_ENV production
@@ -8,24 +8,24 @@ RUN mkdir src
 COPY prisma prisma/
 CMD npx prisma migrate deploy
 
-FROM node:17-alpine AS dependencies
+FROM node:16-alpine AS dependencies
 WORKDIR /var/app
 COPY package.json yarn.lock tsconfig.json ./
 RUN yarn install --frozen-lockfile
 
-FROM node:17-alpine AS build
+FROM node:16-alpine AS build
 ENV NODE_ENV production
 WORKDIR /var/app
 COPY --from=dependencies /var/app/node_modules node_modules/
 COPY . .
 RUN yarn build
 
-FROM node:17-alpine AS prodDependencies
+FROM node:16-alpine AS prodDependencies
 WORKDIR /var/app
 COPY package.json yarn.lock ./
 RUN yarn install --production=true --frozen-lockfile
 
-FROM node:17-alpine AS package
+FROM node:16-alpine AS package
 ARG DATABASE_URL
 ENV DATABASE_URL $DATABASE_URL
 ENV NODE_ENV production
@@ -41,7 +41,7 @@ RUN npx prisma generate
 RUN npx pkg . -o $SERVICE_NAME
 RUN chmod -v +x /var/app/$SERVICE_NAME
 
-FROM node:17-alpine AS runtime
+FROM node:16-alpine AS runtime
 ARG DATABASE_URL
 ENV DATABASE_URL $DATABASE_URL
 ARG VERSION="0.0.1"
