@@ -91,6 +91,7 @@ export abstract class WatchedList<T> {
 
     if (this.isNewItem(item)) {
       this.removeFromNew(item);
+
       return;
     }
 

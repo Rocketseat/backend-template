@@ -74,6 +74,7 @@ const statusText: Record<string, string> = {
           } else if (res.statusCode >= 500 || err) {
             return 'error';
           }
+
           return 'silent';
         },
         customSuccessMessage: function (res: ServerResponse) {
