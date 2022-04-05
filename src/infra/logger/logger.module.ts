@@ -99,6 +99,13 @@ const statusText: Record<string, string> = {
                 },
               }
             : undefined,
+        serializers: {
+          req(req) {
+            req.body = req.raw.body;
+
+            return req;
+          },
+        },
       },
     }),
   ],
