@@ -106,6 +106,11 @@ const statusText: Record<string, string> = {
             return req;
           },
         },
+        formatters: {
+          level(level) {
+            return { level };
+          },
+        },
       },
     }),
   ],
