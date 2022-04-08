@@ -38,7 +38,7 @@ COPY --from=build /var/app/prisma prisma/
 RUN wget -O /var/app/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64 && \
   chmod -v +x /var/app/dumb-init
 RUN npx prisma generate
-RUN npx pkg . -o $SERVICE_NAME
+RUN npx pkg@5.5.2 . -o $SERVICE_NAME
 RUN chmod -v +x /var/app/$SERVICE_NAME
 
 FROM node:16-alpine AS runtime
