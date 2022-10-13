@@ -1,7 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import tracer from 'dd-trace';
-import { ConfigurationInput, createLightship, Lightship } from 'lightship';
 import { LoggerErrorInterceptor } from 'nestjs-pino';
 
 import { LoggerService } from '@infra/logger/logger.service';
