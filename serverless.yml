@@ -1,0 +1,20 @@
+service: backend-template
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-jetpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+
+functions:
+  api:
+    handler: build/lambda.handler
+    events:
+      - http:
+          method: any
+          path: /{proxy+}

@@ -4,3 +4,4 @@ node_modules
 .env.testing
 dist
 build
+.serverless
