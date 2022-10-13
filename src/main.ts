@@ -9,30 +9,19 @@ import { LoggerService } from '@infra/logger/logger.service';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const configuration: ConfigurationInput = {
-    detectKubernetes: process.env.NODE_ENV !== 'production' ? false : true,
-    gracefulShutdownTimeout: 30 * 1000,
-    port: 9000,
-  };
-
-  const lightship: Lightship = await createLightship(configuration);
-
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
-
-  lightship.registerShutdownHandler(() => app.close());
 
   const LoggerServiceInstance = app.get(LoggerService);
 
   app.useLogger(LoggerServiceInstance);
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
   app.useGlobalPipes(new ValidationPipe());
-  
+
   app.enableShutdownHooks();
 
-  app.listen(3333).then(() => {
-    lightship.signalReady();
+  app.listen(process.env.PORT || 3333).then(() => {
     LoggerServiceInstance.log('HTTP server running!');
   });
 }
