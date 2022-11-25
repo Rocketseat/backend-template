@@ -7,10 +7,11 @@ import { LoggerErrorInterceptor } from 'nestjs-pino';
 import { LoggerService } from '@infra/logger/logger.service';
 
 import { AppModule } from './app.module';
+import { ENV, PORT, SERVICE, VERSION } from './config/app';
 
 async function bootstrap() {
   const configuration: ConfigurationInput = {
-    detectKubernetes: process.env.NODE_ENV !== 'production' ? false : true,
+    detectKubernetes: ENV !== 'production' ? false : true,
     gracefulShutdownTimeout: 30 * 1000,
     port: 9000,
   };
@@ -28,19 +29,19 @@ async function bootstrap() {
   app.useLogger(LoggerServiceInstance);
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
   app.useGlobalPipes(new ValidationPipe());
-  
+
   app.enableShutdownHooks();
 
-  app.listen(3333).then(() => {
+  app.listen(PORT).then(() => {
     lightship.signalReady();
     LoggerServiceInstance.log('HTTP server running!');
   });
 }
 
 tracer.init({
-  service: process.env.SERVICE,
-  env: process.env.NODE_ENV,
-  version: process.env.VERSION,
+  service: SERVICE,
+  env: ENV,
+  version: VERSION,
   runtimeMetrics: true,
   logInjection: true,
 });
