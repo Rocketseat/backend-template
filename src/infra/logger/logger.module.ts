@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { Request } from 'express';
 import { ServerResponse } from 'http';
 import { LoggerModule as PinoLoggerModule } from 'nestjs-pino';
 
@@ -100,14 +101,14 @@ const statusText: Record<string, string> = {
               }
             : undefined,
         serializers: {
-          req(req) {
-            req.body = req.raw.body;
+          req(req: Request) {
+            req.body = req.body;
 
             return req;
           },
         },
         formatters: {
-          level(level) {
+          level(level: string) {
             return { level };
           },
         },

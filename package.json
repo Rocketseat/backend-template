@@ -19,7 +19,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "tsc && tsc-alias && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -93,6 +93,7 @@
     "ts-jest": "27.1.4",
     "ts-loader": "9.2.8",
     "ts-node": "10.7.0",
+    "tsc-alias": "1.8.2",
     "tsconfig-paths": "3.14.1",
     "typescript": "4.6.3"
   }
