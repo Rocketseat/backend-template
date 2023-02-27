@@ -2,7 +2,6 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
-import path from 'node:path';
 
 // import { DatabaseModule } from '@infra/database/database.module';
 import { ComplexityPlugin } from '@infra/http/graphql/complexity-plugin';
@@ -17,12 +16,15 @@ import { JwtStrategy } from './auth/jwt.strategy';
 
     GraphQLModule.forRoot({
       driver: ApolloDriver,
-      autoSchemaFile: path.join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: true,
       plugins: [new ComplexityPlugin(20)],
-      // subscriptions: {
-      //   'subscriptions-transport-ws': true,
-      //   'graphql-ws': true,
-      // },
+      cors: {
+        credentials: true,
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        allowedHeaders:
+          'Content-Type,Accept,Authorization,Access-Control-Allow-Origin',
+      },
     }),
   ],
   providers: [

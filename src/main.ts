@@ -1,7 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import tracer from 'dd-trace';
-import { ConfigurationInput, createLightship, Lightship } from 'lightship';
 import { LoggerErrorInterceptor } from 'nestjs-pino';
 
 import { LoggerService } from '@infra/logger/logger.service';
@@ -10,19 +9,17 @@ import { AppModule } from './app.module';
 import { ENV, PORT, SERVICE, VERSION } from './config/app';
 
 async function bootstrap() {
-  const configuration: ConfigurationInput = {
-    detectKubernetes: ENV !== 'production' ? false : true,
-    gracefulShutdownTimeout: 30 * 1000,
-    port: 9000,
-  };
-
-  const lightship: Lightship = await createLightship(configuration);
-
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
 
-  lightship.registerShutdownHandler(() => app.close());
+  app.enableCors({
+    origin: true,
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders:
+      'Content-Type,Accept,Authorization,Access-Control-Allow-Origin',
+  });
 
   const LoggerServiceInstance = app.get(LoggerService);
 
@@ -33,8 +30,7 @@ async function bootstrap() {
   app.enableShutdownHooks();
 
   app.listen(PORT).then(() => {
-    lightship.signalReady();
-    LoggerServiceInstance.log('HTTP server running!');
+    LoggerServiceInstance.log(`HTTP server running on port ${PORT}!`);
   });
 }
 
