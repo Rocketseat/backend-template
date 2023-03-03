@@ -54,6 +54,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: Install dependencies (with cache)
         uses: bahmutov/npm-install@v1
 
