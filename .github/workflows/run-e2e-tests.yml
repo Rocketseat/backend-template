@@ -54,6 +54,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: Install dependencies (with cache)
         uses: bahmutov/npm-install@v1
 
@@ -65,5 +70,5 @@ jobs:
           DATABASE_USER: postgres
           DATABASE_PASS: docker
           DATABASE_NAME: app
-          JWT_PUBLIC_KEY: ${{secrets.JWT_PUBLIC_KEY}}
-          JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
+          JWT_PUBLIC_KEY: ${{secrets.JWT_DUMMY_PUBLIC}}
+          JWT_SECRET_KEY: ${{secrets.JWT_DUMMY_PRIVATE}}
