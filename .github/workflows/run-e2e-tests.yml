@@ -70,5 +70,5 @@ jobs:
           DATABASE_USER: postgres
           DATABASE_PASS: docker
           DATABASE_NAME: app
-          JWT_PUBLIC_KEY: ${{secrets.JWT_PUBLIC_KEY}}
-          JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
+          JWT_PUBLIC_KEY: ${{secrets.JWT_DUMMY_PUBLIC}}
+          JWT_SECRET_KEY: ${{secrets.JWT_DUMMY_PRIVATE}}
