@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import { base64Encode } from '@utils/base64-encode';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { base64Encode } from 'src/utils/base64-encode';
 
 import { AuthUser } from './auth-user';
 
