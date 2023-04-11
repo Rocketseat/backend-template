@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 export const USER = process.env.DATABASE_USER ?? 'docker';
 export const PASSWORD = process.env.DATABASE_PASS ?? 'docker';
 export const HOST = process.env.DATABASE_HOST ?? 'localhost';
