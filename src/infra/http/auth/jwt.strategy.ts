@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import { base64Encode } from '@utils/base64-encode';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { AuthUser } from './auth-user';
@@ -14,9 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_PUBLIC_KEY
-        ? Buffer.from(process.env.JWT_PUBLIC_KEY, 'base64').toString()
-        : '',
+      secretOrKey: base64Encode(process.env.JWT_PUBLIC_KEY),
       algorithms: ['RS256'],
     });
   }
