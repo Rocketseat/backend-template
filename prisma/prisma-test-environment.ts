@@ -1,12 +1,12 @@
 import type { Config } from '@jest/types';
-import { exec } from 'child_process';
 import dotenv from 'dotenv';
 import NodeEnvironment from 'jest-environment-node';
-import { Client } from 'pg';
-import util from 'util';
-import { v4 as uuid } from 'uuid';
+import mysql from 'mysql2/promise';
+import { exec } from 'node:child_process';
+import crypto from 'node:crypto';
+import util from 'node:util';
 
-import { HOST, NAME, PASSWORD, PORT, USER } from '../src/config/database';
+import { HOST, PASSWORD, PORT, USER } from '../src/config/database';
 
 dotenv.config({ path: '.env.testing' });
 
@@ -21,8 +21,8 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
   constructor(config: Config.ProjectConfig) {
     super(config);
 
-    this.schema = `test_${uuid()}`;
-    this.connectionString = `postgresql://${USER}:${PASSWORD}@${HOST}:${PORT}/${NAME}?schema=${this.schema}`;
+    this.schema = `test_${crypto.randomUUID()}`;
+    this.connectionString = `mysql://${USER}:${PASSWORD}@${HOST}:${PORT}/${this.schema}`;
   }
 
   async setup() {
@@ -35,12 +35,12 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    const client = new Client({
-      connectionString: this.connectionString,
-    });
+    const client = await mysql.createConnection(this.connectionString);
 
     await client.connect();
-    await client.query(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`);
+    await client.query(
+      `DROP DATABASE IF EXISTS \`${client.config.database}\`;`,
+    );
     await client.end();
   }
 }
