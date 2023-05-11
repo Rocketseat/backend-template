@@ -3,17 +3,19 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
 
-// import { DatabaseModule } from '@infra/database/database.module';
+import { UseCasesModule } from '@application/use-cases/user-case.module';
+
+import { DatabaseModule } from '@infra/database/database.module';
 import { ComplexityPlugin } from '@infra/http/graphql/complexity-plugin';
-import { ExampleResolver } from '@infra/http/graphql/resolvers/example.resolver';
 
 import { JWTAuthGuard } from './auth/jwt-auth-guard';
 import { JwtStrategy } from './auth/jwt.strategy';
+import { UserResolver } from './graphql/resolvers/user.resolver';
 
 @Module({
   imports: [
-    // DatabaseModule,
-
+    DatabaseModule,
+    UseCasesModule,
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: true,
@@ -28,7 +30,7 @@ import { JwtStrategy } from './auth/jwt.strategy';
     }),
   ],
   providers: [
-    ExampleResolver,
+    UserResolver,
     JwtStrategy,
     {
       provide: APP_GUARD,
