@@ -8,19 +8,23 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
-        image: postgres:13
-        ports:
-          - 5432:5432
+      mysql:
+        image: bitnami/mysql
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: docker
-          POSTGRES_DB: app
+          MYSQL_DATABASE: app
+          MYSQL_USER: docker
+          MYSQL_PASSWORD: docker
+          MYSQL_ROOT_PASSWORD: toor
+        ports:
+          - 3306:3306
+        volumes:
+          - mysql:/var/lib/mysql
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
       zookeeper:
         image: bitnami/zookeeper:3
         ports:
@@ -57,7 +61,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Install dependencies (with cache)
         uses: bahmutov/npm-install@v1
@@ -66,9 +70,8 @@ jobs:
         run: yarn test:e2e
         env:
           DATABASE_HOST: localhost
-          DATABASE_PORT: 5432
-          DATABASE_USER: postgres
-          DATABASE_PASS: docker
-          DATABASE_NAME: app
+          DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
+          DATABASE_USER: root
+          DATABASE_PASS: toor
           JWT_PUBLIC_KEY: ${{secrets.JWT_DUMMY_PUBLIC}}
           JWT_SECRET_KEY: ${{secrets.JWT_DUMMY_PRIVATE}}

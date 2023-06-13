@@ -4,20 +4,23 @@ services:
   # Application
 
   database:
-    image: 'bitnami/postgresql'
+    image: 'bitnami/mysql'
+    container_name: 'mysql'
     ports:
-      - '5432:5432'
+      - '3306:3306'
     environment:
-      - POSTGRESQL_USERNAME=docker
-      - POSTGRESQL_PASSWORD=docker
-      - POSTGRESQL_DATABASE=app
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=docker
+      - MYSQL_PASSWORD=docker
+      - MYSQL_ROOT_PASSWORD=toor
     volumes:
-      - 'postgresql_data:/bitnami/postgresql'
+      - 'mysql_data:/bitnami/mysql'
     networks:
       - app-net
 
   redis:
     image: 'bitnami/redis'
+    container_name: 'redis'
     ports:
       - '6379:6379'
     environment:
@@ -29,6 +32,7 @@ services:
 
   zookeeper:
     image: 'bitnami/zookeeper:3'
+    container_name: 'zookeeper'
     ports:
       - '2181:2181'
     volumes:
@@ -40,6 +44,7 @@ services:
 
   kafka:
     image: 'bitnami/kafka:3'
+    container_name: 'kafka'
     ports:
       - '9092:9092'
     volumes:
@@ -63,7 +68,7 @@ volumes:
     driver: local
   kafka_data:
     driver: local
-  postgresql_data:
+  mysql_data:
     driver: local
   redis_data:
     driver: local
