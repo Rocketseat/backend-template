@@ -5,14 +5,14 @@ services:
 
   database:
     image: 'bitnami/mysql'
-    container_name: 'mysql'
+    container_name: 'mysql-${APP_NAME}'
     ports:
-      - '3306:3306'
+      - '${DATABASE_PORT}:3306'
     environment:
-      - MYSQL_DATABASE=app
-      - MYSQL_USER=docker
-      - MYSQL_PASSWORD=docker
-      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASS}
+      - MYSQL_ROOT_PASSWORD=${DATAVASE_ROOT_PASSWORD}
     volumes:
       - 'mysql_data:/bitnami/mysql'
     networks:
@@ -20,9 +20,9 @@ services:
 
   redis:
     image: 'bitnami/redis'
-    container_name: 'redis'
+    container_name: 'redis-${APP_NAME}'
     ports:
-      - '6379:6379'
+      - '${REDIS_PORT}:6379'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
@@ -32,9 +32,9 @@ services:
 
   zookeeper:
     image: 'bitnami/zookeeper:3'
-    container_name: 'zookeeper'
+    container_name: 'zookeeper-${APP_NAME}'
     ports:
-      - '2181:2181'
+      - '${ZOOKEEPER_PORT}:2181'
     volumes:
       - 'zookeeper_data:/bitnami'
     environment:
@@ -44,15 +44,15 @@ services:
 
   kafka:
     image: 'bitnami/kafka:3'
-    container_name: 'kafka'
+    container_name: 'kafka-${APP_NAME}'
     ports:
-      - '9092:9092'
+      - '${KAFKA_PORT}:9092'
     volumes:
       - 'kafka_data:/bitnami'
     environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:${ZOOKEEPER_PORT}
       - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${KAFKA_HOST}:${KAFKA_PORT}
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper

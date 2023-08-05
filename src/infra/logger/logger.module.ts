@@ -67,7 +67,7 @@ const statusText: Record<string, string> = {
   imports: [
     PinoLoggerModule.forRoot({
       pinoHttp: {
-        name: `${process.env.SERVICE || 'backend'}-logger`,
+        name: `${process.env.APP_NAME || 'backend'}-logger`,
         level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
         customLogLevel: (res: ServerResponse, err: Error) => {
           if (res.statusCode >= 400 && res.statusCode < 500) {
