@@ -6,7 +6,7 @@ import { LoggerErrorInterceptor } from 'nestjs-pino';
 import { LoggerService } from '@infra/logger/logger.service';
 
 import { AppModule } from './app.module';
-import { ENV, PORT, SERVICE, VERSION } from './config/app';
+import { ENV, PORT, APP_NAME, APP_VERSION } from './config/app';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -35,9 +35,9 @@ async function bootstrap() {
 }
 
 tracer.init({
-  service: SERVICE,
+  service: APP_NAME,
   env: ENV,
-  version: VERSION,
+  version: APP_VERSION,
   runtimeMetrics: true,
   logInjection: true,
 });

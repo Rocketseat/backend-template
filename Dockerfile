@@ -38,14 +38,14 @@ COPY --from=build /var/app/prisma prisma/
 RUN wget -O /var/app/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64 && \
   chmod -v +x /var/app/dumb-init
 RUN npx prisma generate
-RUN npx pkg@5.5.2 . -o $SERVICE_NAME
-RUN chmod -v +x /var/app/$SERVICE_NAME
+RUN npx pkg@5.5.2 . -o $APP_NAME
+RUN chmod -v +x /var/app/$APP_NAME
 
 FROM node:16-alpine AS runtime
 ARG DATABASE_URL
 ENV DATABASE_URL $DATABASE_URL
-ARG VERSION="0.0.1"
-ENV VERSION $VERSION
+ARG APP_VERSION="0.0.1"
+ENV APP_VERSION $APP_VERSION
 ARG COMMIT
 ENV COMMIT $COMMIT
 ENV NODE_ENV production
@@ -56,6 +56,6 @@ COPY --chown=node:node --from=package /var/app/src /src/
 COPY --chown=node:node --from=package /var/app/src src/
 # :)
 COPY --chown=node:node --from=package /var/app/dumb-init dumb-init
-COPY --chown=node:node --from=package /var/app/$SERVICE_NAME $SERVICE_NAME
+COPY --chown=node:node --from=package /var/app/$APP_NAME $APP_NAME
 ENTRYPOINT ["/var/app/dumb-init", "--"]
-CMD ["/var/app/$SERVICE_NAME"]
+CMD ["/var/app/$APP_NAME"]
