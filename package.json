@@ -38,7 +38,7 @@
     "@nestjs/apollo": "10.0.8",
     "@nestjs/common": "8.4.3",
     "@nestjs/config": "2.0.0",
-    "@nestjs/core": "8.4.3",
+    "@nestjs/core": "9.0.5",
     "@nestjs/graphql": "10.0.8",
     "@nestjs/passport": "9.0.0",
     "@nestjs/platform-express": "8.4.3",
