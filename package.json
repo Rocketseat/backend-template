@@ -84,7 +84,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "husky": "7.0.4",
     "jest": "27.5.1",
-    "pino-pretty": "7.6.0",
+    "pino-pretty": "7.6.1",
     "prettier": "2.4.0",
     "prisma": "4.10.1",
     "supertest": "6.2.2",
