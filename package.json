@@ -74,7 +74,7 @@
     "@types/node": "16.11.26",
     "@types/passport-jwt": "3.0.8",
     "@types/pg": "8.6.5",
-    "@types/supertest": "2.0.12",
+    "@types/supertest": "2.0.16",
     "@types/uuid": "8.3.4",
     "@typescript-eslint/eslint-plugin": "5.17.0",
     "@typescript-eslint/parser": "5.17.0",
