@@ -61,7 +61,7 @@
     "rxjs": "7.5.5"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.2.3",
+    "@commitlint/cli": "16.3.0",
     "@nestjs/cli": "8.2.4",
     "@nestjs/schematics": "8.0.8",
     "@nestjs/testing": "8.4.3",
