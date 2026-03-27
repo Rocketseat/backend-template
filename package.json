@@ -70,7 +70,7 @@
     "@swc/core": "1.2.120",
     "@swc/jest": "0.2.20",
     "@types/express": "4.17.13",
-    "@types/jest": "27.4.1",
+    "@types/jest": "27.5.2",
     "@types/node": "16.11.26",
     "@types/passport-jwt": "3.0.8",
     "@types/pg": "8.6.5",
